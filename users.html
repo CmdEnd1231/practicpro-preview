@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PracticPRO - Utilizatori</title>
+  <style>
+    :root {
+      --ink: #14213d;
+      --muted: #64748b;
+      --line: #dde8f4;
+      --blue: #246bfe;
+      --blue-dark: #0b4edb;
+      --green: #22a86b;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --panel: #f6f9fd;
+      --shadow: 0 18px 42px rgba(20, 33, 61, .1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #f5f8fc;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .funding-strip {
+      background: #fff;
+      border-bottom: 1px solid #e6edf5;
+      color: #075099;
+    }
+
+    .funding-row {
+      min-height: 74px;
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .funding-note {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .eu-emblem {
+      width: 82px;
+      height: auto;
+      display: block;
+    }
+
+    .funding-title {
+      display: block;
+      color: #075099;
+      font-size: 19px;
+      font-weight: 900;
+      line-height: 1.08;
+    }
+
+    .funding-subtitle {
+      display: block;
+      margin-top: 4px;
+      color: #5f7288;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .government-logo {
+      width: 56px;
+      height: 56px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .shell {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+    }
+
+    .sidebar {
+      background: #10233f;
+      color: #fff;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 8px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      box-shadow: 0 12px 26px rgba(36,107,254,.28);
+    }
+
+    .brand-title {
+      display: block;
+      font-size: 22px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,.68);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav-item {
+      min-height: 44px;
+      border-radius: 12px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      font-weight: 820;
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,.12);
+      color: #fff;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.34);
+    }
+
+    .nav-item.active .nav-dot { background: var(--green); }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.74);
+      line-height: 1.5;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumbs {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 8px 0 0;
+      font-size: 34px;
+      line-height: 1.1;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      min-height: 42px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #fff;
+      color: #243a59;
+      font-weight: 900;
+      font-size: 14px;
+      cursor: default;
+      box-shadow: 0 8px 20px rgba(20,33,61,.05);
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 14px 28px rgba(36,107,254,.24);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      min-height: 112px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #dfe9f5;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(20,33,61,.055);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .stat-value {
+      margin-top: 12px;
+      font-size: 30px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .stat-note {
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #dfe9f5;
+      box-shadow: 0 14px 34px rgba(20,33,61,.06);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 18px;
+      border-bottom: 1px solid #e7eef7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .filters {
+      padding: 16px 18px;
+      border-bottom: 1px solid #e7eef7;
+      display: grid;
+      grid-template-columns: minmax(230px, 1fr) 150px 150px 150px;
+      gap: 10px;
+    }
+
+    .input,
+    .select {
+      min-height: 42px;
+      border-radius: 12px;
+      border: 1px solid #d7e2ef;
+      background: #f8fbff;
+      color: #32455f;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 860px;
+    }
+
+    th,
+    td {
+      padding: 15px 18px;
+      text-align: left;
+      border-bottom: 1px solid #edf2f8;
+      vertical-align: middle;
+      font-size: 14px;
+    }
+
+    th {
+      color: #6b7d94;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 950;
+      letter-spacing: .03em;
+      background: #fbfdff;
+    }
+
+    .user-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+
+    .user-name {
+      font-weight: 920;
+      color: #17253e;
+    }
+
+    .user-email {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 720;
+    }
+
+    .badge {
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef4fb;
+      color: #415570;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .badge.green { background: #e7f8ef; color: #13794b; }
+    .badge.amber { background: #fff4da; color: #9a6700; }
+    .badge.blue { background: #eaf3ff; color: #0b4edb; }
+    .badge.red { background: #ffeded; color: #b42318; }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid #d7e2ef;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: #40546e;
+      font-weight: 950;
+    }
+
+    .side-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .role-card {
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid #dfe9f5;
+      padding: 18px;
+      box-shadow: 0 14px 34px rgba(20,33,61,.06);
+    }
+
+    .role-card h3 {
+      margin: 0 0 14px;
+      font-size: 17px;
+    }
+
+    .role-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 0;
+      border-top: 1px solid #edf2f8;
+      color: #40546e;
+      font-weight: 800;
+    }
+
+    .role-row:first-of-type { border-top: 0; }
+
+    .invite-box {
+      border-radius: 18px;
+      padding: 20px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(255,255,255,.26), transparent 22%),
+        linear-gradient(135deg, #246bfe, #22a86b);
+      box-shadow: var(--shadow);
+    }
+
+    .invite-box h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .invite-box p {
+      margin: 0 0 16px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .invite-box .btn {
+      width: 100%;
+      background: #fff;
+      color: #16355f;
+    }
+
+    @media (max-width: 1120px) {
+      .shell { grid-template-columns: 86px 1fr; }
+      .brand span:last-child,
+      .nav-item span:last-child,
+      .sidebar-footer { display: none; }
+      .brand { justify-content: center; }
+      .nav-item { justify-content: center; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .workspace { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .funding-row { padding: 12px 18px; }
+      .government-logo { width: 48px; height: 48px; }
+      .funding-title { font-size: 16px; }
+      .funding-subtitle { display: none; }
+      .shell { display: block; }
+      .sidebar { display: none; }
+      .main { padding: 20px; }
+      .topbar { align-items: stretch; flex-direction: column; }
+      .top-actions { flex-wrap: wrap; }
+      .stats { grid-template-columns: 1fr; }
+      .filters { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="funding-strip">
+    <div class="funding-row">
+      <div class="funding-note">
+        <img class="eu-emblem" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Emblema Uniunii Europene">
+        <span>
+          <span class="funding-title">Cofinantat de<br>Uniunea Europeana</span>
+          <span class="funding-subtitle">Fondul Social European Plus (FSE+)</span>
+        </span>
+      </div>
+      <img class="government-logo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guvernul%20Rom%C3%A2niei%20%282016-%29.svg" alt="Guvernul Romaniei">
+    </div>
+  </div>
+
+  <div class="shell">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">P</span>
+        <span>
+          <span class="brand-title">PracticPRO</span>
+          <span class="brand-sub">Super Admin</span>
+        </span>
+      </a>
+      <nav class="nav-list" aria-label="Navigare dashboard">
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Overview</span></a>
+        <a class="nav-item active" href="#"><span class="nav-dot"></span><span>Utilizatori</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Scoli</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Elevi</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Companii</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Oferte</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Raportare</span></a>
+      </nav>
+      <div class="sidebar-footer">
+        Datele vizibile aici sunt doar pentru utilizatorii autorizati. Actiunile reale vor fi verificate server-side.
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="breadcrumbs">Dashboard / Super Admin / Utilizatori</div>
+          <h1>Utilizatori</h1>
+        </div>
+        <div class="top-actions">
+          <a class="btn" href="index.html">Inapoi la homepage</a>
+          <button class="btn">Import CSV</button>
+          <button class="btn primary">Adauga utilizator</button>
+        </div>
+      </div>
+
+      <section class="stats" aria-label="Statistici utilizatori">
+        <article class="stat-card">
+          <div class="stat-label">Total conturi</div>
+          <div class="stat-value">318</div>
+          <div class="stat-note">255 elevi vizati in proiect</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Conturi active</div>
+          <div class="stat-value">286</div>
+          <div class="stat-note">90% active</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">In asteptare</div>
+          <div class="stat-value">18</div>
+          <div class="stat-note">companii si invitatii noi</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Conturi noi luna asta</div>
+          <div class="stat-value">42</div>
+          <div class="stat-note">pentru raportare lunara</div>
+        </article>
+      </section>
+
+      <div class="workspace">
+        <section class="panel">
+          <div class="panel-head">
+            <h2 class="panel-title">Lista utilizatori</h2>
+            <span class="badge blue">Acces Super Admin</span>
+          </div>
+          <div class="filters">
+            <div class="input">Cauta dupa nume, email sau organizatie</div>
+            <div class="select">Rol: toate</div>
+            <div class="select">Status: toate</div>
+            <div class="select">Scoala: toate</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Utilizator</th>
+                  <th>Rol</th>
+                  <th>Organizatie</th>
+                  <th>Status</th>
+                  <th>Ultima activitate</th>
+                  <th>Actiuni</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="user-cell">
+                      <div class="avatar">AM</div>
+                      <div>
+                        <div class="user-name">Ana Munteanu</div>
+                        <div class="user-email">ana.munteanu@elev.ro</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge blue">Elev</span></td>
+                  <td>Colegiul Tehnic G. Airinei</td>
+                  <td><span class="badge green">Activ</span></td>
+                  <td>Azi, 10:42</td>
+                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-cell">
+                      <div class="avatar">IP</div>
+                      <div>
+                        <div class="user-name">Ioana Popescu</div>
+                        <div class="user-email">ioana.popescu@scoala.ro</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge">Profesor</span></td>
+                  <td>Colegiul Tehnic G. Airinei</td>
+                  <td><span class="badge green">Activ</span></td>
+                  <td>Ieri, 16:12</td>
+                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-cell">
+                      <div class="avatar">DV</div>
+                      <div>
+                        <div class="user-name">Daniel Voicu</div>
+                        <div class="user-email">daniel.voicu@companie.ro</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge">Companie</span></td>
+                  <td>MatHaus</td>
+                  <td><span class="badge amber">In asteptare</span></td>
+                  <td>Acum 2 zile</td>
+                  <td><div class="actions"><span class="icon-btn">A</span><span class="icon-btn">R</span></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-cell">
+                      <div class="avatar">EC</div>
+                      <div>
+                        <div class="user-name">Elena Cristea</div>
+                        <div class="user-email">elena.cristea@admin.ro</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge red">Super Admin</span></td>
+                  <td>PracticPRO</td>
+                  <td><span class="badge green">Activ</span></td>
+                  <td>Azi, 09:18</td>
+                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-cell">
+                      <div class="avatar">MS</div>
+                      <div>
+                        <div class="user-name">Mihai Stan</div>
+                        <div class="user-email">mihai.stan@elev.ro</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="badge blue">Elev</span></td>
+                  <td>Colegiul Tehnic G. Airinei</td>
+                  <td><span class="badge amber">Invitat</span></td>
+                  <td>Nu a intrat inca</td>
+                  <td><div class="actions"><span class="icon-btn">T</span><span class="icon-btn">E</span></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="role-card">
+            <h3>Distributie roluri</h3>
+            <div class="role-row"><span>Elevi</span><span>255</span></div>
+            <div class="role-row"><span>Profesori</span><span>18</span></div>
+            <div class="role-row"><span>Companii</span><span>31</span></div>
+            <div class="role-row"><span>Scoli</span><span>3</span></div>
+            <div class="role-row"><span>Super Admin</span><span>2</span></div>
+          </section>
+
+          <section class="invite-box">
+            <h3>Invitatii rapide</h3>
+            <p>Trimite conturi noi pentru elevi, profesori sau companii fara sa expui date sensibile in frontend.</p>
+            <button class="btn">Creeaza invitatie</button>
+          </section>
+
+          <section class="role-card">
+            <h3>Reguli de acces</h3>
+            <div class="role-row"><span>Elevii vad doar contul propriu</span><span>OK</span></div>
+            <div class="role-row"><span>Companiile vad aplicatiile proprii</span><span>OK</span></div>
+            <div class="role-row"><span>Exporturi doar Super Admin</span><span>OK</span></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
