@@ -694,6 +694,141 @@
       padding-top: 22px;
     }
 
+    .platform-flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .flow-preview {
+      min-height: 430px;
+      border-radius: 26px;
+      padding: 28px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(255,255,255,.22), transparent 22%),
+        linear-gradient(135deg, #14213d, #246bfe);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .flow-preview:after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      bottom: -90px;
+      border-radius: 50%;
+      background: rgba(255,200,87,.26);
+    }
+
+    .flow-preview > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-preview .tag {
+      width: max-content;
+      background: rgba(255,255,255,.16);
+      color: #fff;
+    }
+
+    .flow-preview h3 {
+      max-width: 420px;
+      margin: 24px 0 12px;
+      font-size: 34px;
+      line-height: 1.08;
+    }
+
+    .flow-preview p {
+      max-width: 420px;
+      margin: 0;
+      color: rgba(255,255,255,.78);
+      line-height: 1.62;
+      font-weight: 600;
+    }
+
+    .flow-dashboard {
+      margin-top: 34px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .flow-dashboard-row {
+      min-height: 58px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.92);
+      color: #17253e;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 16px;
+      font-weight: 900;
+    }
+
+    .flow-dashboard-row span:last-child {
+      color: var(--blue-dark);
+      font-size: 13px;
+    }
+
+    .flow-steps {
+      display: grid;
+      gap: 16px;
+      counter-reset: flow;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 132px;
+      border-radius: 22px;
+      border: 1px solid #dfe9f5;
+      background: #fff;
+      padding: 22px 22px 22px 88px;
+      box-shadow: 0 12px 30px rgba(20,33,61,.06);
+    }
+
+    .flow-step:before {
+      counter-increment: flow;
+      content: counter(flow);
+      position: absolute;
+      left: 22px;
+      top: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      font-weight: 950;
+      box-shadow: 0 10px 22px rgba(36,107,254,.22);
+    }
+
+    .flow-step h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+      font-weight: 550;
+    }
+
     .resources-grid {
       display: grid;
       grid-template-columns: 1.05fr .95fr;
@@ -1066,29 +1201,41 @@
         <div class="section-head">
           <div>
             <h2>Ce poti face in platforma</h2>
-            <p class="section-copy">Pagina publica trebuie sa-i arate elevului rapid ca platforma e pentru el: gaseste, invata, aplica.</p>
+            <p class="section-copy">Un parcurs simplu pentru elevi: gasesti oportunitati, te pregatesti, aplici si urmaresti totul din contul tau.</p>
           </div>
           <a href="#" class="btn outline">Cum functioneaza</a>
         </div>
-        <div class="path-grid">
-          <a class="path-card" href="#" style="--blob:#246bfe; --icon:#eaf3ff;">
-            <div class="path-icon">🔎</div>
-            <h3>Descoperi stagii</h3>
-            <p>Vezi oportunitati reale de practica si alegi domeniul care te atrage.</p>
-            <div class="card-action"><span>Exploreaza</span><span>→</span></div>
-          </a>
-          <a class="path-card" href="#" style="--blob:#ff6b6b; --icon:#fff0f0;">
-            <div class="path-icon">📝</div>
-            <h3>Iti pregatesti aplicatia</h3>
-            <p>Gasesti ghiduri pentru CV, interviu si primul contact cu o companie.</p>
-            <div class="card-action"><span>Vezi ghiduri</span><span>→</span></div>
-          </a>
-          <a class="path-card" href="#" style="--blob:#22a86b; --icon:#e9f8f0;">
-            <div class="path-icon">✅</div>
-            <h3>Aplici si urmaresti</h3>
-            <p>Trimiti aplicatia direct din platforma si vezi statusul in contul tau.</p>
-            <div class="card-action"><span>Urmareste progres</span><span>→</span></div>
-          </a>
+        <div class="platform-flow">
+          <div class="flow-preview">
+            <div>
+              <span class="tag">Flow elev</span>
+              <h3>De la prima cautare pana la aplicatia trimisa</h3>
+              <p>Platforma aduna oportunitatile, resursele si statusul aplicatiilor intr-un singur loc, ca elevul sa nu piarda pasii importanti.</p>
+            </div>
+            <div class="flow-dashboard" aria-label="Rezumat flow platforma">
+              <div class="flow-dashboard-row"><span>Oferte filtrate</span><span>Domeniu + locatie</span></div>
+              <div class="flow-dashboard-row"><span>CV pregatit</span><span>Ghiduri + exemple</span></div>
+              <div class="flow-dashboard-row"><span>Aplicatie trimisa</span><span>Status vizibil</span></div>
+            </div>
+          </div>
+          <div class="flow-steps">
+            <article class="flow-step">
+              <h3>Descoperi stagii relevante</h3>
+              <p>Cauti oportunitati dupa domeniu, locatie, durata si tipul programului de practica.</p>
+            </article>
+            <article class="flow-step">
+              <h3>Iti pregatesti profilul</h3>
+              <p>Completezi datele importante, incarci CV-ul PDF si folosesti ghidurile din hub-ul de resurse.</p>
+            </article>
+            <article class="flow-step">
+              <h3>Aplici direct din platforma</h3>
+              <p>Trimiti aplicatia catre companie, iar CV-ul este atasat in mod securizat.</p>
+            </article>
+            <article class="flow-step">
+              <h3>Urmaresti progresul</h3>
+              <p>Vezi statusul aplicatiilor, evenimentele si recomandarile utile din dashboard.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
