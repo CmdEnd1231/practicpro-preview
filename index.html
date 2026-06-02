@@ -561,6 +561,17 @@
       background: #fff;
       border: 1px solid #e0e9f4;
       box-shadow: 0 14px 34px rgba(20,33,61,.07);
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .path-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(36,107,254,.32);
+      box-shadow: 0 20px 46px rgba(20,33,61,.12);
     }
 
     .path-card:after {
@@ -575,6 +586,11 @@
       opacity: .32;
     }
 
+    .path-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .path-icon {
       width: 58px;
       height: 58px;
@@ -583,6 +599,12 @@
       place-items: center;
       background: var(--icon);
       font-size: 28px;
+    }
+
+    .path-icon.label {
+      font-size: 13px;
+      font-weight: 950;
+      color: #173a66;
     }
 
     .path-card h3,
@@ -665,6 +687,11 @@
       color: var(--blue-dark);
       font-size: 14px;
       font-weight: 950;
+    }
+
+    .path-card .card-action {
+      margin-top: auto;
+      padding-top: 22px;
     }
 
     .resources-grid {
@@ -771,27 +798,57 @@
       font-size: 25px;
     }
 
-    .for-all {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: stretch;
+    .partners-section {
+      overflow: hidden;
     }
 
-    .audience-card {
-      border-radius: 24px;
-      padding: 28px;
+    .logo-slider {
+      position: relative;
+      overflow: hidden;
+      padding: 10px 0;
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+
+    .logo-track {
+      display: flex;
+      width: max-content;
+      gap: 18px;
+      animation: logo-scroll 30s linear infinite;
+    }
+
+    .logo-slider:hover .logo-track {
+      animation-play-state: paused;
+    }
+
+    .partner-logo {
+      width: 178px;
+      height: 94px;
+      border-radius: 18px;
       border: 1px solid #dfe9f5;
       background: #fff;
-      box-shadow: 0 14px 34px rgba(20,33,61,.07);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 12px 28px rgba(20,33,61,.06);
+      flex: 0 0 auto;
     }
 
-    .audience-card.school {
-      background: #10233f;
-      color: #fff;
+    .partner-logo img {
+      max-width: 128px;
+      max-height: 48px;
+      object-fit: contain;
+      filter: saturate(.95);
     }
 
-    .audience-card.school p { color: rgba(255,255,255,.76); }
+    .partner-logo span {
+      color: #415570;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    @keyframes logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
     .footer {
       background: #f4f8fc;
@@ -977,27 +1034,61 @@
       <div class="wrap">
         <div class="section-head">
           <div>
+            <h2>Intra rapid unde ai nevoie</h2>
+            <p class="section-copy">Trei intrari clare pentru cei care folosesc platforma: elevi, companii si resurse practice pentru primul stagiu.</p>
+          </div>
+        </div>
+        <div class="path-grid">
+          <a class="path-card" href="#" style="--blob:#246bfe; --icon:#eaf3ff;">
+            <div class="path-icon label">Elev</div>
+            <h3>Pentru elevi</h3>
+            <p>Intra in lumea practicii alaturi de companii serioase si gaseste oportunitati potrivite pentru tine.</p>
+            <div class="card-action"><span>Vezi stagii</span><span>→</span></div>
+          </a>
+          <a class="path-card" href="#" style="--blob:#22a86b; --icon:#e9f8f0;">
+            <div class="path-icon label">Comp</div>
+            <h3>Pentru companii</h3>
+            <p>Publica oferta companiei tale si descopera elevi motivati sa invete intr-un mediu real de lucru.</p>
+            <div class="card-action"><span>Publica oferta</span><span>→</span></div>
+          </a>
+          <a class="path-card" href="#" style="--blob:#ff6b6b; --icon:#fff0f0;">
+            <div class="path-icon label">Hub</div>
+            <h3>Hub de resurse</h3>
+            <p>Ghiduri simple si practice care te ajuta sa aplici la primul tau stagiu de practica.</p>
+            <div class="card-action"><span>Deschide hub-ul</span><span>→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
             <h2>Ce poti face in platforma</h2>
             <p class="section-copy">Pagina publica trebuie sa-i arate elevului rapid ca platforma e pentru el: gaseste, invata, aplica.</p>
           </div>
           <a href="#" class="btn outline">Cum functioneaza</a>
         </div>
         <div class="path-grid">
-          <article class="path-card" style="--blob:#246bfe; --icon:#eaf3ff;">
+          <a class="path-card" href="#" style="--blob:#246bfe; --icon:#eaf3ff;">
             <div class="path-icon">🔎</div>
             <h3>Descoperi stagii</h3>
             <p>Vezi oportunitati reale de practica si alegi domeniul care te atrage.</p>
-          </article>
-          <article class="path-card" style="--blob:#ff6b6b; --icon:#fff0f0;">
+            <div class="card-action"><span>Exploreaza</span><span>→</span></div>
+          </a>
+          <a class="path-card" href="#" style="--blob:#ff6b6b; --icon:#fff0f0;">
             <div class="path-icon">📝</div>
             <h3>Iti pregatesti aplicatia</h3>
             <p>Gasesti ghiduri pentru CV, interviu si primul contact cu o companie.</p>
-          </article>
-          <article class="path-card" style="--blob:#22a86b; --icon:#e9f8f0;">
+            <div class="card-action"><span>Vezi ghiduri</span><span>→</span></div>
+          </a>
+          <a class="path-card" href="#" style="--blob:#22a86b; --icon:#e9f8f0;">
             <div class="path-icon">✅</div>
             <h3>Aplici si urmaresti</h3>
             <p>Trimiti aplicatia direct din platforma si vezi statusul in contul tau.</p>
-          </article>
+            <div class="card-action"><span>Urmareste progres</span><span>→</span></div>
+          </a>
         </div>
       </div>
     </section>
@@ -1124,19 +1215,29 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section partners-section">
       <div class="wrap">
-        <div class="for-all">
-          <article class="audience-card">
-            <div class="path-icon" style="background:#eef6ff;">🏢</div>
-            <h2 style="margin-top:18px;">Pentru companii</h2>
-            <p class="section-copy">Publica oferte, primeste aplicatii si descopera elevi motivati sa invete intr-un mediu real de lucru.</p>
-          </article>
-          <article class="audience-card school">
-            <div class="path-icon" style="background:rgba(255,255,255,.14);">🎓</div>
-            <h2 style="margin-top:18px;">Pentru scoli si profesori</h2>
-            <p class="section-copy">Urmareste elevii, resursele, aplicatiile si progresul intr-un spatiu centralizat si usor de administrat.</p>
-          </article>
+        <div class="section-head">
+          <div>
+            <h2>Companii care pot inspira primul stagiu</h2>
+            <p class="section-copy">Un spatiu vizual pentru parteneri si companii relevante. Logo-urile sunt orientative pentru mockup si pot fi inlocuite cu partenerii reali.</p>
+          </div>
+        </div>
+        <div class="logo-slider" aria-label="Slider logo-uri companii">
+          <div class="logo-track">
+            <div class="partner-logo"><img src="https://logo.clearbit.com/dedeman.ro" alt="Dedeman"><span>Dedeman</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/mathaus.ro" alt="MatHaus"><span>MatHaus</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/emag.ro" alt="eMAG"><span>eMAG</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/altex.ro" alt="Altex"><span>Altex</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/fancourier.ro" alt="FAN Courier"><span>FAN Courier</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/bancatransilvania.ro" alt="Banca Transilvania"><span>Banca Transilvania</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/dedeman.ro" alt="Dedeman"><span>Dedeman</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/mathaus.ro" alt="MatHaus"><span>MatHaus</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/emag.ro" alt="eMAG"><span>eMAG</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/altex.ro" alt="Altex"><span>Altex</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/fancourier.ro" alt="FAN Courier"><span>FAN Courier</span></div>
+            <div class="partner-logo"><img src="https://logo.clearbit.com/bancatransilvania.ro" alt="Banca Transilvania"><span>Banca Transilvania</span></div>
+          </div>
         </div>
       </div>
     </section>
