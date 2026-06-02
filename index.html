@@ -39,40 +39,50 @@
     }
 
     .funding-strip {
-      height: 42px;
-      background: #f4f8ff;
-      border-bottom: 1px solid #dce7f5;
-      color: #486078;
-      font-size: 13px;
+      background: #fff;
+      border-bottom: 1px solid #e6edf5;
+      color: #075099;
     }
 
     .funding-row {
-      height: 42px;
+      min-height: 86px;
+      padding: 14px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
 
     .funding-note {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 650;
-      white-space: nowrap;
+      gap: 14px;
+      min-width: 0;
     }
 
-    .mini-eu {
-      width: 34px;
-      height: 22px;
-      border-radius: 4px;
-      background: #1554c0;
-      color: #ffd84d;
-      display: grid;
-      place-items: center;
-      font-size: 10px;
+    .eu-emblem {
+      width: 96px;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .funding-title {
+      display: block;
+      color: #075099;
+      font-size: 22px;
       font-weight: 900;
-      letter-spacing: 1px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .funding-subtitle {
+      display: block;
+      margin-top: 4px;
+      color: #5f7288;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
     }
 
     .official-logos {
@@ -81,19 +91,24 @@
       gap: 10px;
     }
 
-    .official-logo {
-      min-width: 128px;
-      height: 28px;
-      padding: 0 12px;
-      border: 1px solid #c8d7eb;
-      border-radius: 7px;
-      background: rgba(255,255,255,.78);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #26405e;
-      font-size: 11px;
-      font-weight: 850;
+    .government-logo {
+      width: 64px;
+      height: 64px;
+      display: block;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .compliance-logo {
+      max-width: 150px;
+      max-height: 54px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .compliance-logo.government {
+      max-width: 58px;
+      max-height: 58px;
     }
 
     .nav {
@@ -847,12 +862,14 @@
   <div class="funding-strip">
     <div class="wrap funding-row">
       <div class="funding-note">
-        <span class="mini-eu">EU</span>
-        <span>Proiect cofinantat de Uniunea Europeana prin Fondul Social European Plus (FSE+)</span>
+        <img class="eu-emblem" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Emblema Uniunii Europene">
+        <span>
+          <span class="funding-title">Cofinantat de<br>Uniunea Europeana</span>
+          <span class="funding-subtitle">Fondul Social European Plus (FSE+)</span>
+        </span>
       </div>
       <div class="official-logos">
-        <span class="official-logo">Uniunea Europeana</span>
-        <span class="official-logo">Guvernul Romaniei</span>
+        <img class="government-logo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guvernul%20Rom%C3%A2niei%20%282016-%29.svg" alt="Guvernul Romaniei">
       </div>
     </div>
   </div>
@@ -1171,8 +1188,8 @@
           Programul Educatie si Ocupare 2021-2027 · PracticPRO - Oportunitati in cariera profesionala prin stagii de practica · ID proiect: 309822.
         </div>
         <div class="official-logos">
-          <span class="official-logo">Uniunea Europeana</span>
-          <span class="official-logo">Guvernul Romaniei</span>
+          <img class="compliance-logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Emblema Uniunii Europene">
+          <img class="compliance-logo government" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guvernul%20Rom%C3%A2niei%20%282016-%29.svg" alt="Guvernul Romaniei">
         </div>
       </div>
     </div>
