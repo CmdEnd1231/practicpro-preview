@@ -391,18 +391,50 @@
     .actions {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .icon-btn {
-      width: 34px;
+      min-width: 58px;
       height: 34px;
       border-radius: 10px;
       border: 1px solid #d7e2ef;
       background: #fff;
-      display: grid;
-      place-items: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
       color: #40546e;
       font-weight: 950;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .view-switch {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .view-link {
+      min-height: 58px;
+      border-radius: 16px;
+      border: 1px solid #dfe9f5;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(20,33,61,.055);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
+      color: #243a59;
+      font-size: 14px;
+      font-weight: 920;
+    }
+
+    .view-link span:last-child {
+      color: var(--blue-dark);
     }
 
     .side-panel {
@@ -486,6 +518,7 @@
       .topbar { align-items: stretch; flex-direction: column; }
       .top-actions { flex-wrap: wrap; }
       .stats { grid-template-columns: 1fr; }
+      .view-switch { grid-template-columns: 1fr; }
       .filters { grid-template-columns: 1fr; }
     }
   </style>
@@ -539,6 +572,13 @@
           <button class="btn primary">Adauga utilizator</button>
         </div>
       </div>
+
+      <nav class="view-switch" aria-label="Previzualizari pe roluri">
+        <a class="view-link" href="student.html"><span>Vezi cum vede elevul</span><span>→</span></a>
+        <a class="view-link" href="teacher-school.html"><span>Vezi profesor / scoala</span><span>→</span></a>
+        <a class="view-link" href="company.html"><span>Vezi compania</span><span>→</span></a>
+        <a class="view-link" href="superadmin.html"><span>Vezi Super Admin</span><span>→</span></a>
+      </nav>
 
       <section class="stats" aria-label="Statistici utilizatori">
         <article class="stat-card">
@@ -602,7 +642,7 @@
                   <td>Colegiul Tehnic G. Airinei</td>
                   <td><span class="badge green">Activ</span></td>
                   <td>Azi, 10:42</td>
-                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                  <td><div class="actions"><span class="icon-btn">Vezi</span><span class="icon-btn">Editeaza</span></div></td>
                 </tr>
                 <tr>
                   <td>
@@ -618,7 +658,7 @@
                   <td>Colegiul Tehnic G. Airinei</td>
                   <td><span class="badge green">Activ</span></td>
                   <td>Ieri, 16:12</td>
-                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                  <td><div class="actions"><span class="icon-btn">Vezi</span><span class="icon-btn">Editeaza</span></div></td>
                 </tr>
                 <tr>
                   <td>
@@ -634,7 +674,7 @@
                   <td>MatHaus</td>
                   <td><span class="badge amber">In asteptare</span></td>
                   <td>Acum 2 zile</td>
-                  <td><div class="actions"><span class="icon-btn">A</span><span class="icon-btn">R</span></div></td>
+                  <td><div class="actions"><span class="icon-btn">Aproba</span><span class="icon-btn">Respinge</span></div></td>
                 </tr>
                 <tr>
                   <td>
@@ -650,7 +690,7 @@
                   <td>PracticPRO</td>
                   <td><span class="badge green">Activ</span></td>
                   <td>Azi, 09:18</td>
-                  <td><div class="actions"><span class="icon-btn">V</span><span class="icon-btn">E</span></div></td>
+                  <td><div class="actions"><span class="icon-btn">Vezi</span><span class="icon-btn">Editeaza</span></div></td>
                 </tr>
                 <tr>
                   <td>
@@ -666,7 +706,7 @@
                   <td>Colegiul Tehnic G. Airinei</td>
                   <td><span class="badge amber">Invitat</span></td>
                   <td>Nu a intrat inca</td>
-                  <td><div class="actions"><span class="icon-btn">T</span><span class="icon-btn">E</span></div></td>
+                  <td><div class="actions"><span class="icon-btn">Retrimite</span><span class="icon-btn">Editeaza</span></div></td>
                 </tr>
               </tbody>
             </table>
