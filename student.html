@@ -1,25 +1,66 @@
 <!doctype html>
 <html lang="ro">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PracticPRO - Dashboard elev</title>
-  <link rel="stylesheet" href="dashboard.css" />
-</head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>PracticPRO - Dashboard elev</title><link rel="stylesheet" href="dashboard.css" /></head>
 <body>
   <div class="funding-strip"><div class="funding-row"><div class="funding-note"><img class="eu-emblem" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="government-logo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guvernul%20Rom%C3%A2niei%20%282016-%29.svg" alt="Guvernul Romaniei"></div></div>
   <div class="shell">
     <aside class="sidebar">
       <a class="brand" href="index.html"><span class="brand-mark">P</span><span><span class="brand-title">PracticPRO</span><span class="brand-sub">Dashboard elev</span></span></a>
-      <nav class="nav-list"><a class="nav-item active" href="#"><span class="nav-dot"></span><span>Overview</span></a><a class="nav-item" href="#"><span class="nav-dot"></span><span>Oferte disponibile</span></a><a class="nav-item" href="#"><span class="nav-dot"></span><span>Aplicatiile mele</span></a><a class="nav-item" href="resources.html"><span class="nav-dot"></span><span>Resurse</span></a><a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente</span></a><a class="nav-item" href="#"><span class="nav-dot"></span><span>Profil si CV</span></a></nav>
-      <div class="sidebar-footer">Elevul vede doar propriul profil, aplicatiile sale si resursele publicate pentru el.</div>
+      <nav class="nav-list">
+        <a class="nav-item active" href="#"><span class="nav-dot"></span><span>Overview</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Oferte eligibile</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Aplicatiile mele</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Documente practica</span></a>
+        <a class="nav-item" href="resources.html"><span class="nav-dot"></span><span>Resurse</span></a>
+        <a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente</span></a>
+      </nav>
+      <div class="sidebar-footer">Elevul vede doar ofertele eligibile pentru scoala selectata la inscriere.</div>
     </aside>
+
     <main class="main">
       <div class="topbar"><div><div class="breadcrumbs">Previzualizare rol / Elev</div><h1>Buna, Ana</h1></div><div class="top-actions"><a class="btn" href="users.html">Inapoi utilizatori</a><a class="btn primary" href="#">Completeaza CV</a></div></div>
-      <section class="stats"><article class="stat-card"><div class="stat-label">Aplicatii active</div><div class="stat-value">3</div><div class="stat-note">2 in asteptare</div></article><article class="stat-card"><div class="stat-label">Oferte salvate</div><div class="stat-value">8</div><div class="stat-note">IT, administrativ, marketing</div></article><article class="stat-card"><div class="stat-label">Evenimente inscrise</div><div class="stat-value">2</div><div class="stat-note">urmatorul pe 24 iunie</div></article><article class="stat-card"><div class="stat-label">Profil complet</div><div class="stat-value">82%</div><div class="stat-note">lipseste recomandarea profesorului</div></article></section>
+
+      <section class="stats">
+        <article class="stat-card"><div class="stat-label">Scoala selectata</div><div class="stat-value" style="font-size:22px;">Liceul Demo</div><div class="stat-note">preselectata in profil</div></article>
+        <article class="stat-card"><div class="stat-label">Oferte eligibile</div><div class="stat-value">8</div><div class="stat-note">doar parteneriate acceptate</div></article>
+        <article class="stat-card"><div class="stat-label">Aplicatii active</div><div class="stat-value">3</div><div class="stat-note">1 acceptata conditionat</div></article>
+        <article class="stat-card"><div class="stat-label">Profil complet</div><div class="stat-value">82%</div><div class="stat-note">lipseste recomandarea profesorului</div></article>
+      </section>
+
       <div class="workspace">
-        <section class="panel"><div class="panel-head"><h2>Oportunitati recomandate</h2><span class="badge blue">Pentru tine</span></div><div class="panel-body list"><div class="list-row"><div><div class="mini-title">Stagiu suport IT junior</div><div class="mini-meta">Bucuresti · 3 saptamani · companie partenera</div></div><span class="badge green">Aplica</span></div><div class="list-row"><div><div class="mini-title">Asistent administrativ</div><div class="mini-meta">Hybrid · 5 locuri disponibile</div></div><span class="badge blue">Vezi detalii</span></div><div class="list-row"><div><div class="mini-title">Practica marketing digital</div><div class="mini-meta">Part-time · portofoliu inclus</div></div><span class="badge blue">Salveaza</span></div></div></section>
-        <aside class="card feature-card"><div><span class="badge">Urmatorul pas</span><h2 style="margin-top:16px;">Pregateste-ti aplicatia</h2><p>Verifica CV-ul si citeste ghidul pentru primul interviu inainte de a aplica.</p></div><a class="btn" href="resources.html">Deschide resurse</a></aside>
+        <section class="panel">
+          <div class="panel-head"><h2>Oferte eligibile pentru scoala ta</h2><span class="badge blue">Filtru automat</span></div>
+          <div class="panel-body list">
+            <div class="list-row"><div><div class="mini-title">Stagiu suport IT junior</div><div class="mini-meta">Demo Tech Solutions · parteneriat acceptat cu Liceul Demo</div></div><span class="badge green">Aplica</span></div>
+            <div class="list-row"><div><div class="mini-title">Asistent administrativ</div><div class="mini-meta">Office Pro · 5 locuri disponibile · contract parteneriat activ</div></div><span class="badge blue">Vezi detalii</span></div>
+            <div class="list-row"><div><div class="mini-title">Marketing digital</div><div class="mini-meta">Vizibil doar pentru elevii scolilor partenere</div></div><span class="badge blue">Salveaza</span></div>
+          </div>
+        </section>
+
+        <aside class="card feature-card">
+          <div><span class="badge">Dupa acceptare</span><h2 style="margin-top:16px;">Mergi la scoala pentru contract si anexa</h2><p>Acceptarea companiei nu finalizeaza practica. Scoala marcheaza participarea dupa semnarea documentelor.</p></div>
+          <a class="btn" href="#">Vezi documente</a>
+        </aside>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <section class="panel">
+          <div class="panel-head"><h2>Aplicatiile mele</h2><span class="badge amber">Actiuni urmatoare</span></div>
+          <div class="table-wrap"><table><thead><tr><th>Oferta</th><th>Companie</th><th>Status</th><th>Urmatorul pas</th></tr></thead><tbody>
+            <tr><td>Suport IT junior</td><td>Demo Tech</td><td><span class="badge green">Acceptat</span></td><td><span class="badge amber">Semneaza la scoala</span></td></tr>
+            <tr><td>Asistent administrativ</td><td>Office Pro</td><td><span class="badge amber">In analiza</span></td><td><span class="badge blue">Asteapta raspuns</span></td></tr>
+            <tr><td>Marketing digital</td><td>Market Lab</td><td><span class="badge blue">Salvat</span></td><td><span class="badge">Aplica</span></td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><h2>Profil elev</h2><span class="badge green">Scoala blocata dupa validare</span></div>
+          <div class="panel-body list">
+            <div class="list-row"><div><div class="mini-title">Scoala</div><div class="mini-meta">Liceul Tehnologic Demo</div></div><span class="badge green">Validata</span></div>
+            <div class="list-row"><div><div class="mini-title">CV PDF</div><div class="mini-meta">Versiune incarcata pe 18 iunie</div></div><span class="badge blue">Actualizeaza</span></div>
+            <div class="list-row"><div><div class="mini-title">Recomandare profesor</div><div class="mini-meta">Optionala, dar utila pentru aplicatie</div></div><span class="badge amber">Lipseste</span></div>
+          </div>
+        </section>
       </div>
     </main>
   </div>

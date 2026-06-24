@@ -3,10 +3,60 @@
 <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>PracticPRO - Super Admin</title><link rel="stylesheet" href="dashboard.css" /></head>
 <body>
   <div class="funding-strip"><div class="funding-row"><div class="funding-note"><img class="eu-emblem" src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="government-logo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guvernul%20Rom%C3%A2niei%20%282016-%29.svg" alt="Guvernul Romaniei"></div></div>
-  <div class="shell"><aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">P</span><span><span class="brand-title">PracticPRO</span><span class="brand-sub">Super Admin</span></span></a><nav class="nav-list"><a class="nav-item active" href="#"><span class="nav-dot"></span><span>Overview</span></a><a class="nav-item" href="users.html"><span class="nav-dot"></span><span>Utilizatori</span></a><a class="nav-item" href="resources.html"><span class="nav-dot"></span><span>Resurse</span></a><a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente</span></a><a class="nav-item" href="#"><span class="nav-dot"></span><span>Raportare</span></a><a class="nav-item" href="#"><span class="nav-dot"></span><span>Setari</span></a></nav><div class="sidebar-footer">Super Admin are acces global si controleaza datele operationale, continutul si raportarea.</div></aside>
-    <main class="main"><div class="topbar"><div><div class="breadcrumbs">Previzualizare rol / Super Admin</div><h1>Panou principal</h1></div><div class="top-actions"><a class="btn" href="users.html">Inapoi utilizatori</a><a class="btn primary" href="#">Export raport</a></div></div>
-      <section class="stats"><article class="stat-card"><div class="stat-label">Elevi</div><div class="stat-value">255</div><div class="stat-note">grup tinta</div></article><article class="stat-card"><div class="stat-label">Companii</div><div class="stat-value">31</div><div class="stat-note">parteneri si conturi active</div></article><article class="stat-card"><div class="stat-label">Oferte</div><div class="stat-value">42</div><div class="stat-note">18 active</div></article><article class="stat-card"><div class="stat-label">Aplicatii</div><div class="stat-value">186</div><div class="stat-note">pentru raportare</div></article></section>
-      <div class="workspace"><section class="panel"><div class="panel-head"><h2>Actiuni rapide Super Admin</h2><span class="badge red">Acces total</span></div><div class="panel-body action-grid"><a class="action-card" href="resources.html"><strong>Adauga resursa / articol</strong><span>→</span></a><a class="action-card" href="events.html"><strong>Adauga eveniment</strong><span>→</span></a><a class="action-card" href="users.html"><strong>Creeaza utilizator</strong><span>elev / profesor / companie</span></a><a class="action-card" href="#"><strong>Creeaza scoala</strong><span>→</span></a><a class="action-card" href="#"><strong>Aloca scoala unui profesor</strong><span>→</span></a><a class="action-card" href="#"><strong>Aloca elevul unei scoli</strong><span>→</span></a></div></section><aside class="card feature-card"><div><span class="badge">Permisiuni profesori</span><h2 style="margin-top:16px;">Drepturile se aleg la crearea contului</h2><p>Super Admin decide daca un profesor poate publica articole, crea evenimente, crea teste sau face alocari intre elevi si scoli.</p></div><a class="btn" href="users.html">Creeaza profesor</a></aside></div>
-    </main></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="brand-mark">P</span><span><span class="brand-title">PracticPRO</span><span class="brand-sub">Super Admin</span></span></a>
+      <nav class="nav-list">
+        <a class="nav-item active" href="#"><span class="nav-dot"></span><span>Overview</span></a>
+        <a class="nav-item" href="users.html"><span class="nav-dot"></span><span>Utilizatori</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Parteneriate</span></a>
+        <a class="nav-item" href="#"><span class="nav-dot"></span><span>Scoli</span></a>
+        <a class="nav-item" href="resources.html"><span class="nav-dot"></span><span>Resurse</span></a>
+        <a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente</span></a>
+      </nav>
+      <div class="sidebar-footer">Super Admin vede global toate conturile, scolile, parteneriatele si permisiunile speciale.</div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar"><div><div class="breadcrumbs">Previzualizare rol / Super Admin</div><h1>Panou principal</h1></div><div class="top-actions"><a class="btn" href="users.html">Inapoi utilizatori</a><a class="btn primary" href="#">Export raport</a></div></div>
+
+      <section class="stats">
+        <article class="stat-card"><div class="stat-label">Elevi</div><div class="stat-value">255</div><div class="stat-note">cu scoala selectata</div></article>
+        <article class="stat-card"><div class="stat-label">Companii</div><div class="stat-value">31</div><div class="stat-note">profiluri si parteneriate</div></article>
+        <article class="stat-card"><div class="stat-label">Parteneriate</div><div class="stat-value">46</div><div class="stat-note">28 acceptate</div></article>
+        <article class="stat-card"><div class="stat-label">Contracte generate</div><div class="stat-value">34</div><div class="stat-note">PDF ready to sign</div></article>
+      </section>
+
+      <div class="workspace">
+        <section class="panel">
+          <div class="panel-head"><h2>Actiuni rapide Super Admin</h2><span class="badge red">Acces total</span></div>
+          <div class="panel-body action-grid">
+            <a class="action-card" href="resources.html"><strong>Adauga resursa / articol</strong><span>-></span></a>
+            <a class="action-card" href="events.html"><strong>Adauga eveniment</strong><span>-></span></a>
+            <a class="action-card" href="users.html"><strong>Creeaza utilizator</strong><span>elev / profesor / companie</span></a>
+            <a class="action-card" href="#"><strong>Creeaza scoala</strong><span>-></span></a>
+            <a class="action-card" href="#"><strong>Aloca scoala unui profesor</strong><span>-></span></a>
+            <a class="action-card" href="#"><strong>Aloca elevul unei scoli</strong><span>-></span></a>
+            <a class="action-card" href="#"><strong>Permisiune aprobare parteneriat</strong><span>profesor individual</span></a>
+            <a class="action-card" href="#"><strong>Monitorizare parteneriate</strong><span>global</span></a>
+          </div>
+        </section>
+
+        <aside class="card feature-card">
+          <div><span class="badge">Permisiuni viitoare</span><h2 style="margin-top:16px;">Profesorii pot primi drepturi individuale</h2><p>Implicit, aprobarea parteneriatelor ramane la scoala si Super Admin. Sistemul lasa loc pentru profesori autorizati individual.</p></div>
+          <a class="btn" href="users.html">Creeaza profesor</a>
+        </aside>
+      </div>
+
+      <section class="panel" style="margin-top:18px;">
+        <div class="panel-head"><h2>Vedere globala parteneriate</h2><span class="badge blue">Control operational</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Companie</th><th>Scoala</th><th>Contract</th><th>Status</th><th>Responsabil</th></tr></thead><tbody>
+          <tr><td>Demo Tech Solutions</td><td>Liceul Tehnologic Demo</td><td>PDF generat</td><td><span class="badge amber">In asteptare</span></td><td>Cont scoala</td></tr>
+          <tr><td>Office Pro Services</td><td>Colegiul Economic Exemplu</td><td>Semnat offline</td><td><span class="badge green">Acceptat</span></td><td>Super Admin</td></tr>
+          <tr><td>Market Lab SRL</td><td>Liceul Industrial Nord</td><td>PDF trimis</td><td><span class="badge red">Respins</span></td><td>Cont scoala</td></tr>
+        </tbody></table></div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
