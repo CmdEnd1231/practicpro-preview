@@ -126,6 +126,25 @@
     return status === "published" ? "Publicat" : "Draft";
   }
 
+  function formatDateLong(value) {
+    if (!value) return "";
+    return new Date(value + "T12:00:00").toLocaleDateString("ro-RO", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+  }
+
+  function getPublishedItems(type) {
+    return readItems()
+      .filter((item) => item.type === type && item.status === "published")
+      .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+  }
+
+  function getCategories(items) {
+    return [...new Set(items.map((item) => item.category).filter(Boolean))];
+  }
+
   function initCmsAdmin() {
     const list = document.querySelector("[data-cms-list]");
     const form = document.querySelector("[data-cms-form]");
@@ -343,12 +362,38 @@
     const target = document.querySelector("[data-public-content]");
     if (!target) return;
     const type = target.dataset.publicContent;
-    const items = readItems().filter((item) => item.type === type && item.status === "published");
+    const items = getPublishedItems(type);
+    const filterTarget = document.querySelector(`[data-content-filters="${type}"]`);
+    let activeCategory = new URLSearchParams(window.location.search).get("category") || "all";
+
+    function paint() {
+      const visible = activeCategory === "all" ? items : items.filter((item) => item.category === activeCategory);
+      if (!visible.length) {
+        target.innerHTML = `<article class="public-empty"><h3>Nu exista continut publicat</h3><p>Continutul salvat din Super Admin va aparea aici dupa publicare.</p></article>`;
+        return;
+      }
+      target.innerHTML = visible.map((item) => renderPublicCard(item)).join("");
+    }
+
     if (!items.length) {
-      target.innerHTML = `<article class="card"><h3>Nu exista continut publicat</h3><p>Continutul salvat din Super Admin va aparea aici dupa publicare.</p></article>`;
+      target.innerHTML = `<article class="public-empty"><h3>Nu exista continut publicat</h3><p>Continutul salvat din Super Admin va aparea aici dupa publicare.</p></article>`;
       return;
     }
-    target.innerHTML = items.map((item) => renderPublicCard(item)).join("");
+    if (filterTarget) {
+      const categories = getCategories(items);
+      if (activeCategory !== "all" && !categories.includes(activeCategory)) activeCategory = "all";
+      filterTarget.innerHTML = [`<button class="filter-chip ${activeCategory === "all" ? "active" : ""}" type="button" data-category="all">Toate</button>`]
+        .concat(categories.map((category) => `<button class="filter-chip ${activeCategory === category ? "active" : ""}" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`))
+        .join("");
+      filterTarget.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-category]");
+        if (!button) return;
+        activeCategory = button.dataset.category;
+        filterTarget.querySelectorAll(".filter-chip").forEach((chip) => chip.classList.toggle("active", chip === button));
+        paint();
+      });
+    }
+    paint();
   }
 
   function renderPublicCard(item) {
@@ -400,23 +445,82 @@
     const id = params.get("id");
     const item = readItems().find((entry) => entry.id === id) || readItems()[0];
     if (!item) {
-      target.innerHTML = `<h1>Nu exista continut pentru preview</h1><p>Intoarce-te in CMS si salveaza un articol sau eveniment.</p>`;
+      target.innerHTML = `<section class="section"><div class="wrap"><h1>Nu exista continut pentru preview</h1><p>Intoarce-te in CMS si salveaza un articol sau eveniment.</p></div></section>`;
       return;
     }
+    const isEvent = item.type === "event";
+    const heroImage = item.image || (isEvent ? "media/article-evenimente.jpg" : "media/article-resurse.jpg");
+    const contentItems = getPublishedItems(item.type);
+    const related = contentItems.filter((entry) => entry.id !== item.id).slice(0, 3);
+    const categories = getCategories(contentItems);
+    const dateLabel = formatDateLong(item.date);
     target.innerHTML = `
-      <div class="preview-back"><a class="btn outline" href="admin-cms.html">Inapoi in CMS</a></div>
-      <span class="tag">${escapeHtml(formatType(item.type))}</span>
-      <h1>${escapeHtml(item.title || "Preview continut")}</h1>
-      <div class="preview-meta">
-        <span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.category || "Fara categorie")}</span>
-        <span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${formatStatus(item.status)}</span>
-        ${item.date ? `<span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.date)}</span>` : ""}
-        ${item.location ? `<span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.location)}</span>` : ""}
-      </div>
-      ${item.image ? `<img class="preview-cover" src="${escapeHtml(item.image)}" alt="">` : ""}
-      <p class="section-copy">${escapeHtml(item.excerpt || "")}</p>
-      <div class="preview-content">${item.content || ""}</div>
+      <section class="detail-hero ${isEvent ? "event-detail-hero" : ""}" style="--preview-img:url('${escapeHtml(heroImage)}');">
+        <div class="wrap detail-hero-inner">
+          <span class="eyebrow">${escapeHtml(formatType(item.type))}</span>
+          <h1>${escapeHtml(item.title || "Preview continut")}</h1>
+          <p>${escapeHtml(item.excerpt || "")}</p>
+          <div class="detail-meta">
+            <span>${escapeHtml(item.category || "Fara categorie")}</span>
+            ${dateLabel ? `<span>${escapeHtml(dateLabel)}</span>` : ""}
+            ${item.location ? `<span>${escapeHtml(item.location)}</span>` : ""}
+          </div>
+        </div>
+      </section>
+      <section class="section detail-section">
+        <div class="wrap detail-layout ${isEvent ? "event-detail-layout" : ""}">
+          <article class="detail-content">
+            <div class="content-filters compact">
+              <a class="filter-chip active" href="${isEvent ? "events.html" : "resources.html"}">Toate</a>
+              ${categories.map((category) => `<a class="filter-chip" href="${isEvent ? "events.html" : "resources.html"}?category=${encodeURIComponent(category)}">${escapeHtml(category)}</a>`).join("")}
+            </div>
+            <div class="preview-content">${item.content || ""}</div>
+          </article>
+          ${isEvent ? `
+          <aside class="event-info-card">
+            <div class="event-info-date"><strong>${escapeHtml(item.date ? String(new Date(item.date + "T12:00:00").getDate()).padStart(2, "0") : "--")}</strong><span>${escapeHtml(item.date ? new Date(item.date + "T12:00:00").toLocaleDateString("ro-RO", { month: "short", year: "numeric" }) : "Data")}</span></div>
+            <h2>Detalii eveniment</h2>
+            <dl>
+              <div><dt>Tip</dt><dd>${escapeHtml(item.category || "Eveniment")}</dd></div>
+              <div><dt>Data</dt><dd>${escapeHtml(dateLabel || "Urmeaza")}</dd></div>
+              <div><dt>Locatie</dt><dd>${escapeHtml(item.location || "Online")}</dd></div>
+            </dl>
+            <a class="btn green" href="register.html">Ma inscriu in platforma</a>
+          </aside>` : ""}
+        </div>
+      </section>
+      ${related.length ? `
+      <section class="section soft">
+        <div class="wrap">
+          <div class="section-head"><div><h2>${isEvent ? "Alte evenimente" : "Alte resurse"}</h2><p class="section-copy">Materiale din aceeasi biblioteca PracticPRO.</p></div></div>
+          <div class="public-content-grid">${related.map((entry) => renderPublicCard(entry)).join("")}</div>
+        </div>
+      </section>` : ""}
     `;
+  }
+
+  function initContentFilters() {
+    document.querySelectorAll("[data-content-filters]").forEach((filterTarget) => {
+      const type = filterTarget.dataset.contentFilters;
+      const items = getPublishedItems(type);
+      if (!items.length) return;
+      const categories = getCategories(items);
+      if (!categories.length) return;
+      filterTarget.innerHTML = [`<button class="filter-chip active" type="button" data-category="all">Toate</button>`]
+        .concat(categories.map((category) => `<button class="filter-chip" type="button" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`))
+        .join("");
+    });
+  }
+
+  function initRegisterForm() {
+    const accountType = document.querySelector("[data-account-type]");
+    const roleFields = document.querySelectorAll("[data-role-fields]");
+    if (!accountType || !roleFields.length) return;
+    function updateRoleFields() {
+      roleFields.forEach((group) => group.classList.toggle("is-hidden", group.dataset.roleFields !== accountType.value));
+    }
+    accountType.addEventListener("change", updateRoleFields);
+    updateRoleFields();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -424,5 +528,6 @@
     renderPublicContent();
     renderLatestContent();
     renderPreviewArticle();
+    initRegisterForm();
   });
 })();

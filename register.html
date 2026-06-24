@@ -15,16 +15,32 @@
         <h1>Inregistrare</h1>
         <p>Completeaza datele de baza si alege tipul de cont. Fluxul final va valida rolul in functie de regulile platformei.</p>
         <div class="form-grid">
-          <div class="field"><label>Tip cont</label><select><option>Elev</option><option>Companie</option><option>Scoala / profesor</option></select></div>
-          <div class="field"><label>Nume / organizatie</label><input type="text" placeholder="Nume complet sau denumire"></div>
-          <div class="field"><label>Email</label><input type="email" placeholder="nume@email.ro"></div>
-          <div class="field"><label>Telefon</label><input type="tel" placeholder="+40..."></div>
-          <div class="field"><label>Parola</label><input type="password" placeholder="Alege o parola"></div>
+          <div class="field"><label>Tip cont</label><select data-account-type><option value="student">Elev</option><option value="company">Companie</option><option value="school">Scoala / profesor</option></select></div>
+          <div class="role-fields" data-role-fields="student">
+            <div class="field"><label>Nume complet</label><input type="text" placeholder="Nume si prenume"></div>
+            <div class="field"><label>Email</label><input type="email" placeholder="nume@email.ro"></div>
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+40..."></div>
+            <div class="field"><label>Parola</label><input type="password" placeholder="Alege o parola"></div>
+          </div>
+          <div class="role-fields is-hidden" data-role-fields="company">
+            <div class="field"><label>Nume companie</label><input type="text" placeholder="Denumirea companiei"></div>
+            <div class="field"><label>CUI</label><input type="text" placeholder="RO12345678"></div>
+            <div class="field"><label>Email</label><input type="email" placeholder="contact@companie.ro"></div>
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+40..."></div>
+            <div class="field"><label>Parola</label><input type="password" placeholder="Alege o parola"></div>
+          </div>
+          <div class="role-fields is-hidden" data-role-fields="school">
+            <div class="field"><label>Denumire institutie de invatamant</label><input type="text" placeholder="Denumirea scolii sau liceului"></div>
+            <div class="field"><label>Email</label><input type="email" placeholder="contact@scoala.ro"></div>
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+40..."></div>
+            <div class="field"><label>Parola</label><input type="password" placeholder="Alege o parola"></div>
+          </div>
           <a class="btn primary" href="login.html">Creeaza cont demo</a>
           <a class="btn outline" href="login.html">Am deja cont</a>
         </div>
       </form>
     </section>
   </main>
+  <script src="admin-cms.js"></script>
 </body>
 </html>
