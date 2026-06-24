@@ -21,8 +21,8 @@
   <nav class="nav">
     <div class="wrap nav-row">
       <a href="index.html" class="brand"><img class="brand-logo" src="logo-header.png" alt="PracticPRO"></a>
-      <div class="nav-links"><a href="elevi.html">Elevi</a><a href="companii.html">Companii</a><a href="scoli.html">Scoli</a><a href="resources.html">Resurse</a><a href="events.html">Evenimente</a><a href="#">Contact</a></div>
-      <div class="nav-actions"><a class="btn outline" href="users.html">Conectare</a><a class="btn primary" href="users.html">Inregistrare</a></div>
+      <div class="nav-links"><a href="elevi.html">Elevi</a><a href="companii.html">Companii</a><a href="scoli.html">Scoli</a><a href="resources.html">Resurse</a><a href="events.html">Evenimente</a><a href="contact.html">Contact</a></div>
+      <div class="nav-actions"><a class="btn admin-demo" href="superadmin.html">SuperAdmin</a><a class="btn outline" href="login.html">Conectare</a><a class="btn primary" href="register.html">Inregistrare</a></div>
     </div>
   </nav>
 
@@ -89,12 +89,8 @@
 
     <section class="section">
       <div class="wrap">
-        <div class="section-head"><div><h2>Oferte, resurse si evenimente intr-un singur loc</h2><p class="section-copy">Platforma combina oportunitatile de practica cu materiale utile si intalniri care ii pregatesc pe elevi pentru experienta din companie.</p></div></div>
-        <div class="article-grid">
-          <article class="article-card"><div class="article-image" style="--img:url('media/article-resurse.jpg');"></div><div class="article-body"><span class="tag">Resurse</span><h3>Ghiduri pentru primul stagiu</h3><p>CV, interviu, documente si recomandari pentru elevii care aplica pentru prima data.</p></div></article>
-          <article class="article-card"><div class="article-image" style="--img:url('media/article-evenimente.jpg');"></div><div class="article-body"><span class="tag">Evenimente</span><h3>Workshopuri si sesiuni Q&A</h3><p>Intalniri cu profesionisti, companii si mentori care pot raspunde intrebarilor elevilor.</p></div></article>
-          <article class="article-card"><div class="article-image" style="--img:url('media/article-companii.jpg');"></div><div class="article-body"><span class="tag">Companii</span><h3>Parteneri pentru practica</h3><p>Companii care pot oferi elevilor experiente reale de invatare si orientare profesionala.</p></div></article>
-        </div>
+        <div class="section-head"><div><h2>Cele mai noi resurse si evenimente</h2><p class="section-copy">Materiale practice, ghiduri si intalniri care ii ajuta pe elevi, scoli si companii sa parcurga mai clar etapele stagiului de practica.</p></div><a class="btn outline" href="resources.html">Vezi toate resursele</a></div>
+        <div class="public-content-grid" data-latest-content></div>
       </div>
     </section>
 
@@ -113,12 +109,13 @@
     <div class="wrap">
       <div class="footer-top">
         <div><div class="footer-logo"><img class="footer-brand-logo" src="logo-header.png" alt="PracticPRO"></div><p>Platforma conecteaza elevii, scolile si companiile prin stagii de practica, parteneriate, resurse si evenimente relevante.</p></div>
-        <div><h4>Platforma</h4><ul><li>Oferte de practica</li><li>Companii partenere</li><li>Scoli implicate</li><li>Biblioteca de resurse</li></ul></div>
-        <div><h4>Conturi</h4><ul><li>Elevi</li><li>Companii</li><li>Scoli si profesori</li><li>Super Admin</li></ul></div>
-        <div><h4>Contact</h4><ul><li>office@4change.ro</li><li>+40 745 535 216</li><li>Bucuresti, Romania</li></ul></div>
+        <div><h4>Platforma</h4><ul><li><a href="resources.html">Biblioteca de resurse</a></li><li><a href="events.html">Evenimente</a></li><li><a href="companii.html">Companii partenere</a></li><li><a href="scoli.html">Scoli implicate</a></li></ul></div>
+        <div><h4>Conturi</h4><ul><li><a href="elevi.html">Elevi</a></li><li><a href="companii.html">Companii</a></li><li><a href="scoli.html">Scoli si profesori</a></li><li><a href="superadmin.html">Super Admin demo</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="contact.html">Pagina de contact</a></li><li>office@4change.ro</li><li>+40 745 535 216</li><li>Bucuresti, Romania</li></ul></div>
       </div>
       <div class="compliance">Proiect cofinantat de Uniunea Europeana prin Fondul Social European Plus (FSE+). Programul Educatie si Ocupare 2021-2027. PracticPRO - Oportunitati in cariera profesionala prin stagii de practica.</div>
     </div>
   </footer>
+  <script src="admin-cms.js"></script>
 </body>
 </html>

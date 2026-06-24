@@ -1,16 +1,31 @@
 <!doctype html>
 <html lang="ro">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>PracticPRO - Resurse</title><link rel="stylesheet" href="dashboard.css" /></head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PracticPRO - Resurse</title>
+  <link rel="stylesheet" href="site.css" />
+</head>
 <body>
-  <div class="funding-strip"><div class="funding-row"><div class="funding-note"><img class="eu-emblem" src="media/eu-flag.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="government-logo" src="media/guvern-romaniei.svg" alt="Guvernul Romaniei"></div></div>
-  <div class="shell">
-    <aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">P</span><span><span class="brand-title">PracticPRO</span><span class="brand-sub">Hub resurse</span></span></a><nav class="nav-list"><a class="nav-item" href="student.html"><span class="nav-dot"></span><span>Elev</span></a><a class="nav-item" href="superadmin.html"><span class="nav-dot"></span><span>Super Admin</span></a><a class="nav-item" href="admin-cms.html"><span class="nav-dot"></span><span>CMS continut</span></a><a class="nav-item active" href="#"><span class="nav-dot"></span><span>Resurse</span></a><a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente</span></a></nav><div class="sidebar-footer">Resursele publicate din builder apar aici automat in preview.</div></aside>
-    <main class="main">
-      <div class="topbar"><div><div class="breadcrumbs">Continut / Hub de resurse</div><h1>Resurse si articole</h1></div><div class="top-actions"><a class="btn" href="users.html">Inapoi utilizatori</a><a class="btn primary" href="admin-cms.html">Articol nou</a></div></div>
-      <section class="stats"><article class="stat-card"><div class="stat-label">Publicate</div><div class="stat-value">Live</div><div class="stat-note">din CMS local</div></article><article class="stat-card"><div class="stat-label">Drafturi</div><div class="stat-value">CMS</div><div class="stat-note">vizibile in builder</div></article><article class="stat-card"><div class="stat-label">Categorii</div><div class="stat-value">Flex</div><div class="stat-note">CV, interviu, cariera</div></article><article class="stat-card"><div class="stat-label">Editare</div><div class="stat-value">OK</div><div class="stat-note">instant in browser</div></article></section>
-      <section class="cards-list" data-public-content="article"></section>
-    </main>
-  </div>
+  <div class="funding-strip"><div class="wrap funding-row"><div class="funding-note"><img class="eu-emblem" src="media/eu-flag.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="project-logo" src="logo-header.png" alt="PracticPRO"><div class="official-logos"><img class="government-logo" src="media/guvern-romaniei.svg" alt="Guvernul Romaniei"></div></div></div>
+  <nav class="nav"><div class="wrap nav-row"><a href="index.html" class="brand"><img class="brand-logo" src="logo-header.png" alt="PracticPRO"></a><div class="nav-links"><a href="elevi.html">Elevi</a><a href="companii.html">Companii</a><a href="scoli.html">Scoli</a><a href="resources.html">Resurse</a><a href="events.html">Evenimente</a><a href="contact.html">Contact</a></div><div class="nav-actions"><a class="btn admin-demo" href="superadmin.html">SuperAdmin</a><a class="btn outline" href="login.html">Conectare</a><a class="btn primary" href="register.html">Inregistrare</a></div></div></nav>
+  <main>
+    <section class="page-hero">
+      <div class="wrap page-hero-inner">
+        <div class="eyebrow" style="color:#246bfe; background:#edf4ff; border-color:#d8e7ff;">Biblioteca PracticPRO</div>
+        <h1>Resurse pentru primul stagiu de practica</h1>
+        <p>Ghiduri scurte, articole si materiale utile pentru elevi, scoli si companii. Tot ce este publicat din CMS apare automat aici.</p>
+        <div class="page-actions"><a class="btn primary" href="register.html">Creeaza cont</a><a class="btn outline" href="events.html">Vezi evenimentele</a></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head"><div><h2>Articole publicate</h2><p class="section-copy">Materialele sunt pregatite pentru a fi administrate din SuperAdmin, prin editorul de continut.</p></div></div>
+        <div class="public-content-grid" data-public-content="article"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer-top"><div><div class="footer-logo"><img class="footer-brand-logo" src="logo-header.png" alt="PracticPRO"></div><p>Platforma conecteaza elevii, scolile si companiile prin stagii de practica, resurse si evenimente relevante.</p></div><div><h4>Platforma</h4><ul><li><a href="index.html">Acasa</a></li><li><a href="events.html">Evenimente</a></li><li><a href="contact.html">Contact</a></li></ul></div><div><h4>Conturi</h4><ul><li><a href="login.html">Conectare</a></li><li><a href="register.html">Inregistrare</a></li><li><a href="superadmin.html">Super Admin demo</a></li></ul></div><div><h4>Contact</h4><ul><li>office@4change.ro</li><li>+40 745 535 216</li></ul></div></div></div></footer>
   <script src="admin-cms.js"></script>
 </body>
 </html>

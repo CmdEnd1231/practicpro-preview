@@ -16,13 +16,24 @@
     {
       id: "articol-interviu",
       type: "article",
-      status: "draft",
+      status: "published",
       title: "Cum raspunzi la primul interviu",
       category: "Interviu",
       date: "2026-06-25",
       excerpt: "Intrebari frecvente, raspunsuri naturale si exemple practice.",
       image: "",
       content: "<p>Primul interviu este mai usor daca stii ce vrei sa transmiti: seriozitate, curiozitate si dorinta de a invata.</p>"
+    },
+    {
+      id: "articol-documente",
+      type: "article",
+      status: "published",
+      title: "Ce documente sunt necesare pentru practica",
+      category: "Documente",
+      date: "2026-06-26",
+      excerpt: "Contractul de practica, anexa pedagogica si pasii de validare prin scoala.",
+      image: "",
+      content: "<p>Dupa acceptarea la un stagiu, elevul merge la scoala pentru documentele necesare. Scoala marcheaza participarea dupa semnare.</p>"
     },
     {
       id: "eveniment-primul-stagiu",
@@ -35,6 +46,30 @@
       image: "",
       location: "Online",
       content: "<p>Workshop dedicat elevilor care vor sa inteleaga pasii de la cautarea unei oferte pana la inceperea stagiului.</p>"
+    },
+    {
+      id: "eveniment-angajatori",
+      type: "event",
+      status: "published",
+      title: "Ce cauta angajatorii la elevi",
+      category: "Q&A",
+      date: "2026-06-30",
+      excerpt: "Dialog cu reprezentanti ai companiilor despre asteptari, atitudine si abilitati utile.",
+      image: "",
+      location: "Hybrid",
+      content: "<p>Eveniment interactiv pentru elevii care vor sa inteleaga cum sa se prezinte la primul contact cu o companie.</p>"
+    },
+    {
+      id: "eveniment-parteneri",
+      type: "event",
+      status: "published",
+      title: "Ziua partenerilor PracticPRO",
+      category: "Companii",
+      date: "2026-07-08",
+      excerpt: "Prezentari scurte ale companiilor si exemple de activitati de practica.",
+      image: "",
+      location: "Fizic",
+      content: "<p>Companiile partenere prezinta domeniile in care pot primi elevi si tipurile de activitati propuse.</p>"
     }
   ];
 
@@ -49,7 +84,15 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(seedItems));
         return seedItems.slice();
       }
-      return JSON.parse(raw);
+      const items = JSON.parse(raw);
+      const existingIds = new Set(items.map((item) => item.id));
+      const missingSeeds = seedItems.filter((item) => !existingIds.has(item.id));
+      if (missingSeeds.length) {
+        const merged = items.concat(missingSeeds);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        return merged;
+      }
+      return items;
     } catch (error) {
       return seedItems.slice();
     }
@@ -305,17 +348,49 @@
       target.innerHTML = `<article class="card"><h3>Nu exista continut publicat</h3><p>Continutul salvat din Super Admin va aparea aici dupa publicare.</p></article>`;
       return;
     }
-    target.innerHTML = items.map((item) => `
-      <article class="${type === "event" ? "event-card" : "article-card"}">
-        ${item.image ? `<img class="cms-card-image" src="${escapeHtml(item.image)}" alt="">` : `<div class="visual"></div>`}
-        <div class="panel-body">
-          <span class="badge ${type === "event" ? "amber" : "blue"}">${escapeHtml(item.category || formatType(type))}</span>
+    target.innerHTML = items.map((item) => renderPublicCard(item)).join("");
+  }
+
+  function renderPublicCard(item) {
+    const link = "cms-preview.html?id=" + encodeURIComponent(item.id);
+    if (item.type === "event") {
+      const date = item.date ? new Date(item.date + "T12:00:00") : null;
+      const day = date ? String(date.getDate()).padStart(2, "0") : "--";
+      const month = date ? date.toLocaleDateString("ro-RO", { month: "short" }) : "";
+      return `
+        <a class="public-event-card" href="${link}">
+          ${item.image ? `<img class="public-card-image" src="${escapeHtml(item.image)}" alt="">` : `<div class="event-accent"></div>`}
+          <div class="event-date"><strong>${day}</strong><span>${escapeHtml(month)}</span></div>
+          <div class="event-content">
+            <span class="tag">${escapeHtml(item.category || "Eveniment")}</span>
+            <h3>${escapeHtml(item.title)}</h3>
+            <p>${escapeHtml(item.excerpt || stripHtml(item.content).slice(0, 150))}</p>
+            <div class="public-card-footer"><span>${escapeHtml(item.location || "Online")}</span><span>Vezi detalii -></span></div>
+          </div>
+        </a>
+      `;
+    }
+    return `
+      <a class="public-content-card" href="${link}">
+        ${item.image ? `<img class="public-card-image" src="${escapeHtml(item.image)}" alt="">` : `<div class="public-card-visual"></div>`}
+        <div class="public-card-body">
+          <span class="tag">${escapeHtml(item.category || "Resursa")}</span>
           <h3>${escapeHtml(item.title)}</h3>
-          <p>${escapeHtml(item.excerpt || stripHtml(item.content).slice(0, 140))}</p>
-          <div class="card-footer"><span>${escapeHtml(item.date || "")}${item.location ? " · " + escapeHtml(item.location) : ""}</span><span>Vezi detalii</span></div>
+          <p>${escapeHtml(item.excerpt || stripHtml(item.content).slice(0, 150))}</p>
+          <div class="public-card-footer"><span>${escapeHtml(item.date || "")}</span><span>Citeste -></span></div>
         </div>
-      </article>
-    `).join("");
+      </a>
+    `;
+  }
+
+  function renderLatestContent() {
+    const target = document.querySelector("[data-latest-content]");
+    if (!target) return;
+    const items = readItems()
+      .filter((item) => item.status === "published" && (item.type === "article" || item.type === "event"))
+      .sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")))
+      .slice(0, 6);
+    target.innerHTML = items.map((item) => renderPublicCard(item)).join("");
   }
 
   function renderPreviewArticle() {
@@ -347,6 +422,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     initCmsAdmin();
     renderPublicContent();
+    renderLatestContent();
     renderPreviewArticle();
   });
 })();
