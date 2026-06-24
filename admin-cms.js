@@ -99,6 +99,7 @@
       location: form.querySelector("[name='location']"),
       excerpt: form.querySelector("[name='excerpt']"),
       image: form.querySelector("[name='image']"),
+      imageUpload: form.querySelector("[name='imageUpload']"),
       content: form.querySelector("[data-editor]")
     };
 
@@ -119,6 +120,7 @@
       fields.location.value = type === "event" ? "Online" : "";
       fields.excerpt.value = "";
       fields.image.value = "";
+      if (fields.imageUpload) fields.imageUpload.value = "";
       fields.content.innerHTML = "<p>Scrie continutul aici...</p>";
       updatePreview();
     }
@@ -133,6 +135,7 @@
       fields.location.value = item.location || "";
       fields.excerpt.value = item.excerpt || "";
       fields.image.value = item.image || "";
+      if (fields.imageUpload) fields.imageUpload.value = "";
       fields.content.innerHTML = item.content || "";
       updatePreview();
     }
@@ -192,6 +195,23 @@
       `;
     }
 
+    function handleImageUpload() {
+      const file = fields.imageUpload && fields.imageUpload.files ? fields.imageUpload.files[0] : null;
+      if (!file) return;
+      if (!file.type.startsWith("image/")) {
+        updateStatus("Fisierul selectat trebuie sa fie o imagine.");
+        fields.imageUpload.value = "";
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        fields.image.value = reader.result;
+        updatePreview();
+        updateStatus("Imagine incarcata in preview.");
+      };
+      reader.readAsDataURL(file);
+    }
+
     function saveItem(event) {
       event.preventDefault();
       const item = getFormItem();
@@ -242,6 +262,7 @@
 
     form.addEventListener("submit", saveItem);
     form.addEventListener("input", updatePreview);
+    if (fields.imageUpload) fields.imageUpload.addEventListener("change", handleImageUpload);
     fields.content.addEventListener("input", updatePreview);
     list.addEventListener("click", (event) => {
       const row = event.target.closest("[data-id]");
