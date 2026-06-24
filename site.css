@@ -39,7 +39,7 @@ a { color: inherit; text-decoration: none; }
 .official-logos { justify-content: flex-end; }
 .eu-emblem { width: 96px; height: auto; display: block; }
 .government-logo { width: 62px; height: 62px; object-fit: contain; display: block; }
-.project-logo { width: 188px; max-height: 68px; object-fit: contain; display: block; }
+.project-logo { width: 238px; max-height: 70px; object-fit: contain; display: block; }
 .funding-title { display: block; color: #075099; font-size: 21px; font-weight: 900; line-height: 1.08; }
 .funding-subtitle { display: block; margin-top: 4px; color: #5f7288; font-size: 12px; font-weight: 750; line-height: 1.25; }
 
@@ -54,7 +54,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-row { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: flex; align-items: center; gap: 12px; min-width: 205px; }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 230px; }
+.brand-logo { width: 220px; max-height: 56px; object-fit: contain; display: block; }
 .brand-mark {
   width: 44px;
   height: 44px;
@@ -195,9 +196,16 @@ p { margin: 0; color: var(--muted); line-height: 1.62; font-weight: 550; }
 .partners-section { overflow: hidden; }
 .logo-slider { overflow: hidden; padding: 10px 0; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .logo-track { display: flex; width: max-content; gap: 18px; animation: logo-scroll 30s linear infinite; }
-.partner-logo { width: 178px; height: 94px; border-radius: 18px; border: 1px solid #dfe9f5; background: #fff; display: grid; place-items: center; box-shadow: 0 12px 28px rgba(20,33,61,.06); flex: 0 0 auto; }
+.partner-logo { width: 190px; height: 100px; border-radius: 18px; border: 1px solid #dfe9f5; background: #fff; display: grid; place-items: center; box-shadow: 0 12px 28px rgba(20,33,61,.06); flex: 0 0 auto; padding: 14px; }
 .partner-logo img { max-width: 128px; max-height: 48px; object-fit: contain; filter: saturate(.95); }
 .partner-logo span { color: #415570; font-weight: 900; font-size: 14px; }
+.logo-wordmark { width: 100%; min-height: 54px; border-radius: 12px; display: grid; place-items: center; text-align: center; font-weight: 950; letter-spacing: 0; line-height: 1; }
+.logo-wordmark.dedeman { background: #083f8f; color: #ffd434; font-size: 22px; }
+.logo-wordmark.mathaus { background: #f5f7fb; color: #1f2937; border: 2px solid #e11d48; font-size: 21px; }
+.logo-wordmark.emag { background: #fff; color: #0a6fae; border: 2px solid #dce8f4; font-size: 26px; }
+.logo-wordmark.altex { background: #102b68; color: #ffe100; font-size: 24px; }
+.logo-wordmark.fan { background: #fff7d6; color: #111827; border: 2px solid #facc15; font-size: 18px; }
+.logo-wordmark.bt { background: #0a57a3; color: #fff; font-size: 18px; }
 @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 .footer { background: #10233f; color: #fff; padding: 52px 0 34px; }
@@ -206,6 +214,7 @@ p { margin: 0; color: var(--muted); line-height: 1.62; font-weight: 550; }
 .footer h4 { margin: 0 0 14px; font-size: 15px; }
 .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; color: rgba(255,255,255,.76); font-size: 14px; font-weight: 750; }
 .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.footer-brand-logo { width: 230px; max-height: 74px; object-fit: contain; display: block; border-radius: 14px; background: rgba(255,255,255,.96); padding: 8px; }
 .footer .brand-sub { color: rgba(255,255,255,.68); }
 .compliance { margin-top: 34px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.6; font-weight: 550; }
 
