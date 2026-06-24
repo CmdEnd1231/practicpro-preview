@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PracticPRO - CMS Super Admin</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="funding-strip"><div class="funding-row"><div class="funding-note"><img class="eu-emblem" src="media/eu-flag.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="government-logo" src="media/guvern-romaniei.svg" alt="Guvernul Romaniei"></div></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><span class="brand-mark">P</span><span><span class="brand-title">PracticPRO</span><span class="brand-sub">CMS Admin</span></span></a>
+      <nav class="nav-list">
+        <a class="nav-item" href="superadmin.html"><span class="nav-dot"></span><span>Overview</span></a>
+        <a class="nav-item active" href="admin-cms.html"><span class="nav-dot"></span><span>CMS continut</span></a>
+        <a class="nav-item" href="resources.html"><span class="nav-dot"></span><span>Resurse publice</span></a>
+        <a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente publice</span></a>
+        <a class="nav-item" href="users.html"><span class="nav-dot"></span><span>Utilizatori</span></a>
+      </nav>
+      <div class="sidebar-footer">Mini-CMS functional pentru preview. Continutul se salveaza in browser si poate fi testat imediat.</div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div><div class="breadcrumbs">Super Admin / CMS continut</div><h1>Builder continut</h1></div>
+        <div class="top-actions"><button class="btn" type="button" data-cms-reset>Reseteaza demo</button><button class="btn primary" type="button" data-cms-new>Continut nou</button></div>
+      </div>
+
+      <section class="cms-shell">
+        <aside class="panel cms-library">
+          <div class="panel-head"><h2>Biblioteca</h2><span class="badge blue">Articole + evenimente</span></div>
+          <div class="panel-body">
+            <div class="cms-filters">
+              <input data-cms-search class="cms-input" type="search" placeholder="Cauta dupa titlu sau categorie">
+              <select data-cms-filter class="cms-input">
+                <option value="all">Toate</option>
+                <option value="article">Articole</option>
+                <option value="event">Evenimente</option>
+                <option value="page">Texte pagina</option>
+              </select>
+            </div>
+            <div class="cms-list" data-cms-list></div>
+          </div>
+        </aside>
+
+        <form class="panel cms-editor" data-cms-form>
+          <input type="hidden" name="id">
+          <div class="panel-head"><h2>Editor</h2><span class="badge green" data-cms-status>Pregatit pentru editare</span></div>
+          <div class="panel-body">
+            <div class="cms-form-grid">
+              <label>Tip continut<select name="type" class="cms-input"><option value="article">Articol / resursa</option><option value="event">Eveniment</option><option value="page">Text pagina</option></select></label>
+              <label>Status<select name="status" class="cms-input"><option value="draft">Draft</option><option value="published">Publicat</option></select></label>
+              <label>Titlu<input name="title" class="cms-input" type="text" placeholder="Titlul continutului"></label>
+              <label>Categorie<input name="category" class="cms-input" type="text" placeholder="CV, Interviu, Workshop..."></label>
+              <label>Data<input name="date" class="cms-input" type="date"></label>
+              <label>Locatie eveniment<input name="location" class="cms-input" type="text" placeholder="Online, fizic, hybrid"></label>
+              <label class="cms-span-2">Imagine optionala<input name="image" class="cms-input" type="url" placeholder="https://... sau media/nume-imagine.jpg"></label>
+              <label class="cms-span-2">Rezumat<textarea name="excerpt" class="cms-input" rows="3" placeholder="Rezumat scurt pentru card"></textarea></label>
+            </div>
+
+            <div class="cms-toolbar" aria-label="Toolbar editor">
+              <button type="button" data-command="bold">B</button>
+              <button type="button" data-command="italic">I</button>
+              <button type="button" data-command="insertUnorderedList">Lista</button>
+              <button type="button" data-block="h2">H2</button>
+              <button type="button" data-block="p">P</button>
+            </div>
+            <div class="cms-rich-editor" data-editor contenteditable="true"></div>
+
+            <div class="top-actions cms-savebar">
+              <button class="btn primary" type="submit">Salveaza continut</button>
+              <button class="btn" type="button" data-cms-delete>Sterge</button>
+              <a class="btn" href="resources.html">Vezi resurse</a>
+              <a class="btn" href="events.html">Vezi evenimente</a>
+            </div>
+          </div>
+        </form>
+
+        <aside class="panel cms-preview">
+          <div class="panel-head"><h2>Preview</h2><span class="badge amber">Card public</span></div>
+          <div class="panel-body" data-cms-preview></div>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <script src="admin-cms.js"></script>
+</body>
+</html>
