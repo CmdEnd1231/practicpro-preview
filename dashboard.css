@@ -291,13 +291,9 @@ th { color: #6b7d94; font-size: 12px; text-transform: uppercase; font-weight: 95
 .table-wrap { overflow-x: auto; }
 
 .cms-shell {
-  display: grid;
-  grid-template-columns: 320px minmax(0, 1fr) 340px;
-  gap: 18px;
-  align-items: start;
+  display: block;
 }
 
-.cms-library,
 .cms-preview { position: sticky; top: 24px; }
 
 .cms-filters,
@@ -321,6 +317,42 @@ textarea.cms-input { resize: vertical; }
 
 .cms-list { margin-top: 16px; }
 
+.sidebar-cms-library {
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 18px 8px 0;
+}
+
+.sidebar-cms-title {
+  color: rgba(255,255,255,.92);
+  font-size: 13px;
+  font-weight: 950;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.sidebar-cms-input {
+  width: 100%;
+  min-height: 38px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  background: rgba(255,255,255,.1);
+  color: #fff;
+  padding: 0 10px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.sidebar-cms-input::placeholder { color: rgba(255,255,255,.58); }
+.sidebar-cms-input option { color: #14213d; }
+
+.sidebar-cms-list {
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
 .cms-list-item {
   width: 100%;
   border: 1px solid #e2ebf5;
@@ -335,6 +367,15 @@ textarea.cms-input { resize: vertical; }
   color: inherit;
   cursor: pointer;
 }
+
+.sidebar-cms-list .cms-list-item {
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  padding: 12px;
+}
+
+.sidebar-cms-list .cms-list-item small { color: rgba(255,255,255,.62); }
 
 .cms-list-item strong { display: block; font-size: 14px; line-height: 1.25; }
 .cms-list-item small { display: block; margin-top: 5px; color: var(--muted); font-weight: 750; }
@@ -376,7 +417,7 @@ textarea.cms-input { resize: vertical; }
 }
 
 .cms-rich-editor {
-  min-height: 280px;
+  min-height: 420px;
   border: 1px solid #dce7f4;
   border-radius: 0 0 14px 14px;
   background: #fff;
@@ -416,8 +457,7 @@ textarea.cms-input { resize: vertical; }
   .brand { justify-content: center; }
   .nav-item { justify-content: center; }
   .stats, .grid-3, .cards-list { grid-template-columns: repeat(2, 1fr); }
-  .workspace, .grid-2, .cms-shell { grid-template-columns: 1fr; }
-  .cms-library,
+  .workspace, .grid-2 { grid-template-columns: 1fr; }
   .cms-preview { position: static; }
 }
 

@@ -108,6 +108,7 @@
     const newButton = document.querySelector("[data-cms-new]");
     const deleteButton = document.querySelector("[data-cms-delete]");
     const resetButton = document.querySelector("[data-cms-reset]");
+    const previewOpenButton = document.querySelector("[data-cms-preview-open]");
     const statusMessage = document.querySelector("[data-cms-status]");
 
     function emptyForm(type = "article") {
@@ -214,11 +215,15 @@
 
     function saveItem(event) {
       event.preventDefault();
+      saveCurrentItem();
+    }
+
+    function saveCurrentItem() {
       const item = getFormItem();
       if (!item.title) {
         updateStatus("Adauga un titlu inainte de salvare.");
         fields.title.focus();
-        return;
+        return null;
       }
       const items = readItems();
       const index = items.findIndex((entry) => entry.id === item.id);
@@ -229,6 +234,7 @@
       renderList();
       updatePreview();
       updateStatus("Salvat: " + item.title);
+      return item;
     }
 
     function deleteItem() {
@@ -272,6 +278,11 @@
     });
     if (newButton) newButton.addEventListener("click", () => emptyForm(fields.type.value));
     if (deleteButton) deleteButton.addEventListener("click", deleteItem);
+    if (previewOpenButton) previewOpenButton.addEventListener("click", () => {
+      const item = saveCurrentItem();
+      if (!item) return;
+      window.open("cms-preview.html?id=" + encodeURIComponent(item.id), "_blank");
+    });
     if (resetButton) resetButton.addEventListener("click", () => {
       writeItems(seedItems);
       renderList();
@@ -307,8 +318,35 @@
     `).join("");
   }
 
+  function renderPreviewArticle() {
+    const target = document.querySelector("[data-preview-article]");
+    if (!target) return;
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const item = readItems().find((entry) => entry.id === id) || readItems()[0];
+    if (!item) {
+      target.innerHTML = `<h1>Nu exista continut pentru preview</h1><p>Intoarce-te in CMS si salveaza un articol sau eveniment.</p>`;
+      return;
+    }
+    target.innerHTML = `
+      <div class="preview-back"><a class="btn outline" href="admin-cms.html">Inapoi in CMS</a></div>
+      <span class="tag">${escapeHtml(formatType(item.type))}</span>
+      <h1>${escapeHtml(item.title || "Preview continut")}</h1>
+      <div class="preview-meta">
+        <span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.category || "Fara categorie")}</span>
+        <span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${formatStatus(item.status)}</span>
+        ${item.date ? `<span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.date)}</span>` : ""}
+        ${item.location ? `<span class="hero-pill" style="color:#243a59; border-color:#dce7f4; background:#f6f9fd;">${escapeHtml(item.location)}</span>` : ""}
+      </div>
+      ${item.image ? `<img class="preview-cover" src="${escapeHtml(item.image)}" alt="">` : ""}
+      <p class="section-copy">${escapeHtml(item.excerpt || "")}</p>
+      <div class="preview-content">${item.content || ""}</div>
+    `;
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     initCmsAdmin();
     renderPublicContent();
+    renderPreviewArticle();
   });
 })();

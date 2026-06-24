@@ -18,6 +18,17 @@
         <a class="nav-item" href="events.html"><span class="nav-dot"></span><span>Evenimente publice</span></a>
         <a class="nav-item" href="users.html"><span class="nav-dot"></span><span>Utilizatori</span></a>
       </nav>
+      <div class="sidebar-cms-library">
+        <div class="sidebar-cms-title">Biblioteca</div>
+        <input data-cms-search class="sidebar-cms-input" type="search" placeholder="Cauta continut">
+        <select data-cms-filter class="sidebar-cms-input">
+          <option value="all">Toate</option>
+          <option value="article">Articole</option>
+          <option value="event">Evenimente</option>
+          <option value="page">Texte pagina</option>
+        </select>
+        <div class="cms-list sidebar-cms-list" data-cms-list></div>
+      </div>
       <div class="sidebar-footer">Mini-CMS functional pentru preview. Continutul se salveaza in browser si poate fi testat imediat.</div>
     </aside>
 
@@ -28,22 +39,6 @@
       </div>
 
       <section class="cms-shell">
-        <aside class="panel cms-library">
-          <div class="panel-head"><h2>Biblioteca</h2><span class="badge blue">Articole + evenimente</span></div>
-          <div class="panel-body">
-            <div class="cms-filters">
-              <input data-cms-search class="cms-input" type="search" placeholder="Cauta dupa titlu sau categorie">
-              <select data-cms-filter class="cms-input">
-                <option value="all">Toate</option>
-                <option value="article">Articole</option>
-                <option value="event">Evenimente</option>
-                <option value="page">Texte pagina</option>
-              </select>
-            </div>
-            <div class="cms-list" data-cms-list></div>
-          </div>
-        </aside>
-
         <form class="panel cms-editor" data-cms-form>
           <input type="hidden" name="id">
           <div class="panel-head"><h2>Editor</h2><span class="badge green" data-cms-status>Pregatit pentru editare</span></div>
@@ -71,17 +66,14 @@
 
             <div class="top-actions cms-savebar">
               <button class="btn primary" type="submit">Salveaza continut</button>
+              <button class="btn green" type="button" data-cms-preview-open>Preview live</button>
               <button class="btn" type="button" data-cms-delete>Sterge</button>
               <a class="btn" href="resources.html">Vezi resurse</a>
               <a class="btn" href="events.html">Vezi evenimente</a>
             </div>
           </div>
         </form>
-
-        <aside class="panel cms-preview">
-          <div class="panel-head"><h2>Preview</h2><span class="badge amber">Card public</span></div>
-          <div class="panel-body" data-cms-preview></div>
-        </aside>
+        <div data-cms-preview hidden></div>
       </section>
     </main>
   </div>
