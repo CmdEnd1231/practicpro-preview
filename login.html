@@ -7,23 +7,27 @@
   <link rel="stylesheet" href="site.css" />
 </head>
 <body>
-  <div class="funding-strip"><div class="wrap funding-row"><div class="funding-note"><img class="eu-emblem" src="media/eu-flag.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinantat de<br>Uniunea Europeana</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="project-logo" src="logo-header.png" alt="PracticPRO"><div class="official-logos"><img class="government-logo" src="media/guvern-romaniei.svg" alt="Guvernul Romaniei"></div></div></div>
-  <nav class="nav"><div class="wrap nav-row"><a href="index.html" class="brand"><img class="brand-logo" src="logo-header.png" alt="PracticPRO"></a><div class="nav-links"><a href="elevi.html">Elevi</a><a href="companii.html">Companii</a><a href="scoli.html">Scoli</a><a href="resources.html">Resurse</a><a href="events.html">Evenimente</a><a href="contact.html">Contact</a></div><div class="nav-actions"><a class="btn admin-demo" href="superadmin.html">SuperAdmin</a><a class="btn primary" href="register.html">Inregistrare</a></div></div></nav>
+  <div class="funding-strip"><div class="wrap funding-row"><div class="funding-note"><img class="eu-emblem" src="media/eu-flag.svg" alt="Emblema Uniunii Europene"><span><span class="funding-title">Cofinanțat de<br>Uniunea Europeană</span><span class="funding-subtitle">Fondul Social European Plus (FSE+)</span></span></div><img class="project-logo" src="logo-general-transparent.png" alt="PracticPRO"><div class="official-logos"><img class="government-logo" src="media/guvern-romaniei.svg" alt="Guvernul Romîniei"></div></div></div>
+  <nav class="nav"><div class="wrap nav-row"><a href="index.html" class="brand"><img class="brand-logo" src="logo-general-transparent.png" alt="PracticPRO"></a><div class="nav-links"><a href="elevi.html">Elevi</a><a href="companii.html">Companii</a><a href="scoli.html">Școli</a><a href="resources.html">Resurse</a><a href="events.html">Evenimente</a><a href="contact.html">Contact</a></div><div class="nav-actions"><a class="btn admin-demo" href="superadmin.html">SuperAdmin</a><a class="btn primary" href="register.html">înregistrare</a></div></div></nav>
   <main class="auth-shell">
     <section class="wrap">
       <form class="auth-card">
-        <h1>Conectare</h1>
-        <p>Alege rolul si intra in zona potrivita. In preview, butoanele duc direct catre dashboard-urile demo.</p>
-        <div class="auth-options"><a class="auth-option" href="student.html">Elev</a><a class="auth-option" href="company.html">Companie</a><a class="auth-option" href="teacher-school.html">Scoala</a></div>
-        <div class="form-grid">
-          <div class="field"><label>Email</label><input type="email" placeholder="nume@email.ro"></div>
-          <div class="field"><label>Parola</label><input type="password" placeholder="Parola"></div>
-          <a class="btn primary" href="student.html">Intra in cont demo</a>
-          <a class="btn outline" href="register.html">Nu ai cont? Inregistreaza-te</a>
+        <h1 data-editable="login-title">Conectare</h1>
+        <p data-editable="login-copy">Alege rolul contului tău și conectează-te în zona potrivită.</p>
+        <div class="auth-options" data-login-role-options>
+          <button class="auth-option active" type="button" data-login-target="student.html" data-editable="login-role-student">Elev</button>
+          <button class="auth-option" type="button" data-login-target="company.html" data-editable="login-role-company">Companie</button>
+          <button class="auth-option" type="button" data-login-target="teacher-school.html" data-editable="login-role-school">Școala</button>
         </div>
-        <p class="form-note">Acces provizoriu pentru test: <a href="superadmin.html">SuperAdmin demo</a>.</p>
+        <div class="form-grid">
+          <div class="field"><label data-editable="login-label-email">Email</label><input type="email" placeholder="nume@email.ro"></div>
+          <div class="field"><label data-editable="login-label-password">Parolă</label><input type="password" placeholder="Parolă"></div>
+          <a class="btn primary" href="student.html" data-login-submit data-editable="login-button-submit">Intră în cont</a>
+          <a class="btn outline" href="register.html" data-editable="login-button-register">Nu ai cont? Înregistrează-te</a>
+        </div>
       </form>
     </section>
   </main>
+  <script src="admin-cms.js"></script>
 </body>
 </html>

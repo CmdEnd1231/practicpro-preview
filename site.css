@@ -341,9 +341,16 @@ p { margin: 0; color: var(--muted); line-height: 1.62; font-weight: 550; }
   text-align: center;
   font-size: 13px;
   font-weight: 950;
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.auth-option:hover { border-color: var(--blue); color: var(--blue-dark); }
+.auth-option:hover,
+.auth-option.active {
+  border-color: var(--blue);
+  color: var(--blue-dark);
+  background: #edf4ff;
+}
 .role-fields { display: grid; gap: 12px; }
 .is-hidden { display: none !important; }
 .form-grid textarea {
@@ -540,6 +547,12 @@ p { margin: 0; color: var(--muted); line-height: 1.62; font-weight: 550; }
 .role-hero-content { max-width: 720px; padding: 62px 0; }
 .role-hero h1 { font-size: 56px; }
 .role-hero p { color: rgba(255,255,255,.88); font-size: 19px; }
+
+.contact-hero {
+  background:
+    linear-gradient(90deg, rgba(12,27,51,.86), rgba(12,27,51,.48)),
+    var(--hero-img) center / cover;
+}
 
 .role-layout { display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: start; }
 .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
